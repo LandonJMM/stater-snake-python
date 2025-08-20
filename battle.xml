@@ -1,0 +1,19 @@
+<battles>
+    <battle id="test">
+        <snake>
+            <name>Snake1</name>
+            <url>http://localhost:8000</url>
+        </snake>
+    </battle>
+
+    <battle id="Testing2">
+        <snake>
+            <name>Snake1</name>
+            <url>http://localhost:8000</url>
+        </snake>
+        <snake>
+            <name>Snake2</name>
+            <url>http://localhost:8000</url>
+        </snake>
+    </battle>
+</battles>
