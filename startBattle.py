@@ -10,13 +10,19 @@ import time
 #TODO: make sure all these work on different OS
 #TODO: move the team name to a different location
 
+childs = []
+
 def cleanup(signum, frame):
         print("Terminating child process...")
         parent = psutil.Process()
 
-        for child in parent.children(recursive=True):
-            print(f"Killed process with PID: {child.pid}") #TODO: is this really needed
+        for child in childs:
             child.terminate()
+            print(f"Killed process with PID: {child.pid}")
+
+        # for child in parent.children(recursive=True):
+        #     print(f"Killed process with PID: {child.pid}") #TODO: is this really needed
+        #     child.terminate()
         
         sys.exit(0) # Exit this proccess as everything is closed properly
 
@@ -83,13 +89,16 @@ def generateBattleArguments(parsedInfo):
 def startSnakeServer(): #TODO: extend to work with already running servers
     proc = subprocess.Popen(["py", "main.py"]) #TODO: people are going to change the name of this file
     print(f"Started process with PID: {proc.pid}")
+    childs.append(proc)
+
     time.sleep(2) # needed to allow for the snake server to fully starup before the battle starts
 
 
 def runBattle(args):
     proc = subprocess.Popen(args) #TODO: needs to be adjustable so people can run more than one snake
     print(f"Started process with PID: {proc.pid}")
-
+    childs.append(proc)
+    
     proc.wait()
 
 
@@ -118,6 +127,7 @@ def main():
 
     startSnakeServer()
     runBattle(commandArgs)
+    cleanup(None, None)
 
 if __name__ == "__main__":
     main()
