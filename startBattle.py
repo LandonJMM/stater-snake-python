@@ -72,7 +72,7 @@ def loadBattleFromXML(xmlPath, battleID):  #TODO: might need to make this a bit 
 
 
 def generateBattleArguments(parsedInfo):
-    args = ['battlesnake', 'play', '-W', '11', '-H', '11','-g', 'solo', '--browser'] #TODO: update to not use solo
+    args = ['battlesnake', 'play', '-W', '11', '-H', '11','-g', 'solo', '--browser', '--board-url', 'http://localhost:5173'] #TODO: update to not use solo
 
     # Generate the commands for the snakes
     snakes = parsedInfo['snakes']
@@ -87,7 +87,7 @@ def generateBattleArguments(parsedInfo):
 
 
 def startSnakeServer(): #TODO: extend to work with already running servers
-    proc = subprocess.Popen(["py", "main.py"]) #TODO: people are going to change the name of this file
+    proc = subprocess.Popen(["python", "main.py"]) #TODO: people are going to change the name of this file
     print(f"Started process with PID: {proc.pid}")
     childs.append(proc)
 

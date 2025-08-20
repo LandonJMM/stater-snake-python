@@ -1,0 +1,15 @@
+{
+	"/(iframed)": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/": [
+		"src/routes/+layout.ts"
+	],
+	"/examples/iframes": [
+		"src/routes/+layout.ts"
+	],
+	"/(iframed)/settings": [
+		"src/routes/+layout.ts"
+	]
+}
