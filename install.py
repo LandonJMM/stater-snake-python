@@ -2,6 +2,7 @@ import subprocess
 
 
 #go install github.com/BattlesnakeOfficial/rules/cli/battlesnake@latest
+#TODO: switch to the bianary 
 
 def installBattleSnake():
     try:

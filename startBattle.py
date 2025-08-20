@@ -39,10 +39,17 @@ def loadBattleFromXML(xmlPath, battleID):  #TODO: might need to make this a bit 
 
         # Parse all the snakes in this battle
         snakes = []
+        count = 0
         for snake in battle.findall('./snake'):
             name = snake.findtext('name')
-            url = snake.findtext('url')
-            snakes.append({'name': name, 'url': url})
+            try:
+                url = snake.findtext('url')
+                snakes.append({'name': name, 'url': url})
+            except: #TODO: no support for this yet
+                port = 8000 + count
+                count += 1
+                file = snake.findtext('file')
+                snakes.append({'name': name, 'port': port, 'file': file})
 
         parsedInfo['snakes'] = snakes
 
@@ -73,7 +80,7 @@ def generateBattleArguments(parsedInfo):
     return args
 
 
-def startSnakeServer():
+def startSnakeServer(): #TODO: extend to work with already running servers
     proc = subprocess.Popen(["py", "main.py"]) #TODO: people are going to change the name of this file
     print(f"Started process with PID: {proc.pid}")
     time.sleep(2) # needed to allow for the snake server to fully starup before the battle starts
